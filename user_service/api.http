@@ -1,0 +1,23 @@
+### create user
+
+POST http://localhost:3001/users
+Content-Type: application/json
+
+{
+  "name": "Mike",
+  "lastName": "Smith"
+}
+
+### update user
+
+PUT http://localhost:3001/users/83ec57d1-1bc9-412e-a54a-daed37a48850
+Content-Type: application/json
+
+{
+  "title": "Andrew",
+  "lastName": "Baker"
+}
+
+### get all users
+
+GET http://localhost:3001/users
