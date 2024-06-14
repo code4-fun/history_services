@@ -15,7 +15,6 @@ export const updateUser = async (req: Request, res: Response, next: NextFunction
     const updatedUser = await userService.updateUser(req.params.id, req.body);
     res.status(200).json(updatedUser);
   } catch (error) {
-    console.log(error)
     next(error);
   }
 };

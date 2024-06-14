@@ -8,6 +8,8 @@
 
 - Docker
 
+- TypeScript
+
 - Node.js
 
 - Express
@@ -20,12 +22,12 @@
 
 Реализованы два микросервиса:
 
-- user_service предоставляет API для создания, изменения и получения пользователей
+- **User service** предоставляет API для создания, изменения и получения пользователей
 
-- history_service отслеживает историю действий с пользователями
+- **History service** отслеживает историю действий с пользователями
 
-Каждый сервис использует PostgreSQL в качестве базы данных, а их взаимодействие организовано
-с помощью брокера сообщений Kafka.
+Взаимодействие сервисов организовано с помощью брокера сообщений **Kafka**. При каждом изменении пользовательских данных, таких как создание нового пользователя или обновление существующего, **User service** инициирует отправку сообщения. **History service** слушает эти сообщения и сохраняет историю действий с пользователями. **History service** также предоставляет API для запросов истории действий с пользователями, поддерживающее фильтрацию по идентификатору пользователя и постраничную навигацию. Каждый сервис использует **PostgreSQL** в качестве базы данных.
+
 
 
 ## Сборка и запуск
@@ -36,10 +38,12 @@
 
 `docker-compose up -d`
 
+### User service
+
 `cd user_service`
 
-`cp .\.env.example .\.env` для Windows  
-`cp ./.env.example ./.env` для Linux
+`cp .\.env.example .\.env` для **Windows**  
+`cp ./.env.example ./.env` для **Linux**
 
 `npm install`
 
@@ -51,9 +55,11 @@
 
 `npm run dev:win` или `npm run dev:linux`
 
-После чего документация Swagger сервиса user_service будет доступна на: http://localhost:3001/api-docs
+После чего документация **Swagger** для сервиса **User service** будет доступна по адресу: http://localhost:3001/api-docs
 
-(также endpoint-ы в файле **api.http**)
+Также в файле **api.http** находится список доступных endpoint-ов.
+
+### History service
 
 `cd ../history_service`
 
@@ -68,8 +74,10 @@
 
 `npm run dev:win` или `npm run dev:linux`
 
-После чего документация Swagger сервиса history_service будет доступна на: http://localhost:3003/api-docs
+После чего документация **Swagger** для сервиса **History service** будет доступна по адресу: http://localhost:3003/api-docs
 
-(также endpoint-ы в файле **api.http**)
+Также в файле **api.http** находится список доступных endpoint-ов.
 
-Для мониторинга Kafka использован Confluent Control Center. Доступен на: http://localhost:9021
+### Confluent Control Center
+
+Для мониторинга **Kafka** использован **Confluent Control Center**. Доступен по адресу: http://localhost:9021

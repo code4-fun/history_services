@@ -1,10 +1,11 @@
+import 'dotenv/config';
 import express from 'express';
 import historyRoutes from './routes';
 import { errorHandler } from './middleware/errorHandler';
 import sequelize from "./db/connection";
 import { setupSwagger } from './utils/swagger';
 import log from "./utils/logger";
-import kafkaService from './service/kafkaService';
+import kafkaConsumerService from './service/kafkaConsumerService';
 
 const app = express();
 const port = parseInt(process.env.PORT || '3003');
@@ -24,8 +25,8 @@ app.listen(port, async () => {
   }
 
   try {
-    await kafkaService.connect();
-    await kafkaService.consumeMessages('user-actions');
+    await kafkaConsumerService.connect();
+    await kafkaConsumerService.consumeMessages('user-actions');
     log.info('Kafka connected');
   } catch (error) {
     log.error('Unable to connect to the Kafka:', error);

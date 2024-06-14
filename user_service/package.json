@@ -4,12 +4,12 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "tsc",
-    "migrate": "npx sequelize-cli db:migrate",
-    "seed": "npx sequelize-cli db:seed:all",
-    "start": "node dist/index.js",
-    "dev:win": "set KAFKAJS_NO_PARTITIONER_WARNING=1 && nodemon ./src/index.ts",
-    "dev:linux": "KAFKAJS_NO_PARTITIONER_WARNING=1 nodemon ./src/index.ts"
+    "build:user": "tsc",
+    "migrate:user": "npx sequelize-cli db:migrate",
+    "seed:user": "npx sequelize-cli db:seed:all",
+    "start:user": "node dist/index.js",
+    "dev:user:win": "set KAFKAJS_NO_PARTITIONER_WARNING=1 && nodemon ./src/index.ts",
+    "dev:user:linux": "KAFKAJS_NO_PARTITIONER_WARNING=1 nodemon ./src/index.ts"
   },
   "keywords": [],
   "author": "",

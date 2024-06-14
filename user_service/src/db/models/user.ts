@@ -7,7 +7,7 @@ import {
   UpdatedAt
 } from 'sequelize-typescript';
 import { v4 as uuidv4 } from 'uuid';
-import { IsString } from 'class-validator';
+import {IsString, MinLength} from 'class-validator';
 
 /**
  * @openapi
@@ -45,6 +45,7 @@ export class User extends Model<User> {
   id!: string;
 
   @IsString()
+  @MinLength(2)
   @Column({
     allowNull: false
   })
