@@ -22,7 +22,7 @@ class KafkaConsumerService {
       }
     };
 
-    const WinstonLogCreator = logLevel => {
+    const WinstonLogCreator = (logLevel: logLevel) => {
       const logger = createLogger({
         level: toWinstonLogLevel(logLevel),
         transports: [
